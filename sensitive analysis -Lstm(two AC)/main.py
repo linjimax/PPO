@@ -28,11 +28,11 @@ def train(env, hyperparameters, actor_model, critic_model):
 	"""	
 	print(f"Training", flush=True)
 
-	log_dir = '/home/linjim/ppo/implement/sensitive analysis -Lstm (two AC) -34'
+	log_dir = '/home/linjim/ppo/implement/sensitive analysis -Lstm (two AC) -35'
 	write = SummaryWriter(log_dir)
 
 	# excel write
-	excel_write = 'sensitive analysis -Lstm (two AC) -34'
+	excel_write = 'sensitive analysis -Lstm (two AC) -35'
 
 	file_path = "/home/linjim/ppo/train_data/data(two AC).xlsx"
 	wb = load_workbook(file_path)

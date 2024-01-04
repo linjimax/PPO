@@ -26,10 +26,10 @@ class PPO:
 		# Initialize hyperparameters for training with PPO
 		self._init_hyperparameters(hyperparameters)
 		torch.set_printoptions(profile="full")
-		
+		# os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 
 		# GPU 
-		self.device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+		self.device = torch.device("cuda:3" if torch.cuda.is_available() else "cpu")
 	
 		# Extract environment information 
 		self.env = env
