@@ -163,5 +163,6 @@ cython_debug/
 implement/
 result_data/
 train_data/
+*.pyc
  
 
