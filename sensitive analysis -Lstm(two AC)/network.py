@@ -37,9 +37,11 @@ class Actor_FeedForwardNN(nn.Module):
 		self.activation5 = nn.ReLU()
 		self.layer6 = nn.Linear(256, 128)
 		self.activation6 = nn.ReLU()
-		self.layer7 = nn.Linear(128, 64)
+		self.layer7 = nn.Linear(128, 128)
 		self.activation7 = nn.ReLU()
-		self.layer8 = nn.Linear(64, 1)
+		self.layer8 = nn.Linear(128, 64)
+		self.activation8 = nn.ReLU()
+		self.layer9 = nn.Linear(64, 1)
 		# self.activation7 = nn.ReLU()
 		# self.layer8 = nn.Linear(64, 1)
 
@@ -78,6 +80,8 @@ class Actor_FeedForwardNN(nn.Module):
 		x = self.layer7(x)
 		x = self.activation7(x)
 		x = self.layer8(x)
+		x = self.activation8(x)
+		x = self.layer9(x)
 
 		output = (x[:, -1, :].squeeze()) * self.output_scale_factor
 
@@ -128,6 +132,9 @@ class Actor_FeedForwardNN(nn.Module):
 		x = self.layer7(x)
 		x = self.activation7(x)
 		x = self.layer8(x)
+		x = self.activation8(x)
+		x = self.layer9(x)
+
 		output = (x[:, -1, :].squeeze())* self.output_scale_factor
 
 		# output2 = (out13[:,-1,:].squeeze())*self.output_scale_factor + 1e-10

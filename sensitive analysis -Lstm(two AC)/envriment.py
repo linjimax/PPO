@@ -46,9 +46,9 @@ class envri() :
             self.yt_m_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             self.phi_array_1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             self.phi_array_2 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            self.delta_array.append(delta)
+            # self.delta_array.append(delta)
             self.ut_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            self.rew_array.append(0)
+            # self.rew_array.append(0)
             self.yt_target_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             self.yt_target_m_array = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             # self.ut_normalarray = [0,0,0]
@@ -97,15 +97,19 @@ class envri() :
         seq10 = np.array((self.phi_array_1[-10], self.phi_array_2[-10], self.nt_array[-10], self.yt_m_array[-10], self.ut_array[-10], self.yt_target_m_array[-10], self.delta_array[-10]))   
         seq11 = np.array((self.phi_array_1[-11], self.phi_array_2[-11], self.nt_array[-11], self.yt_m_array[-11], self.ut_array[-11], self.yt_target_m_array[-11], self.delta_array[-11]))   
         seq12 = np.array((self.phi_array_1[-12], self.phi_array_2[-12], self.nt_array[-12], self.yt_m_array[-12], self.ut_array[-12], self.yt_target_m_array[-12], self.delta_array[-12]))   
-        # seq13 = np.array((self.phi_array_1[-13], self.phi_array_2[-13], self.nt_array[-13], self.yt_m_array[-13], self.ut_array[-13], self.yt_target_m_array[-13], self.delta_array[-13]))   
-        # seq14 = np.array((self.phi_array_1[-14], self.phi_array_2[-14], self.nt_array[-14], self.yt_m_array[-14], self.ut_array[-14], self.yt_target_m_array[-14], self.delta_array[-14]))   
-        # seq15 = np.array((self.phi_array_1[-15], self.phi_array_2[-15], self.nt_array[-15], self.yt_m_array[-15], self.ut_array[-15], self.yt_target_m_array[-15], self.delta_array[-15]))   
+        seq13 = np.array((self.phi_array_1[-13], self.phi_array_2[-13], self.nt_array[-13], self.yt_m_array[-13], self.ut_array[-13], self.yt_target_m_array[-13], self.delta_array[-13]))   
+        seq14 = np.array((self.phi_array_1[-14], self.phi_array_2[-14], self.nt_array[-14], self.yt_m_array[-14], self.ut_array[-14], self.yt_target_m_array[-14], self.delta_array[-14]))   
+        seq15 = np.array((self.phi_array_1[-15], self.phi_array_2[-15], self.nt_array[-15], self.yt_m_array[-15], self.ut_array[-15], self.yt_target_m_array[-15], self.delta_array[-15]))   
       
-        obs = np.vstack((seq12, seq11, seq10, seq9, seq8, seq7, seq6, seq5, seq4, seq3, seq2, seq1))
+        obs = np.vstack((seq15, seq14, seq13, seq12, seq11, seq10, seq9, seq8, seq7, seq6, seq5, seq4, seq3, seq2, seq1))
       
         #reward 
-        if abs(yt_target) <= (self.epsilon) : 
-            rew = (-2 * yt_target) + 10 
+        if abs(yt_target) <= 2: 
+            rew = (-15 * yt_target) + 60
+        elif abs(yt_target) <= 5: 
+            rew = (-6.666 * yt_target) + 43.33
+        elif abs(yt_target) <= (self.epsilon):
+            rew = (-2 * yt_target) + 20 
         else :
             # rew = np.clip(-abs(yt - self.target), -1e+5, 1e+5)
             rew = -np.log2(abs(yt_target))

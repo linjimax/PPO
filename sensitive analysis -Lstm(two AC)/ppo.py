@@ -365,7 +365,7 @@ class PPO:
 			# This is the loop where we update our network for some n epochs
 			for j in range(self.n_updates_per_iteration):                                                     # ALG STEP 6 & 7
 				
-				for i in range(40):
+				for i in range(30):
 
 					# Calculate V_phi and pi_theta(a_t | s_t)
 					V, _, curr_log_probs = self.evaluate(batch_obs, batch_acts, first_hidden, second_hidden)
@@ -408,8 +408,8 @@ class PPO:
 				actor_loss.backward(retain_graph=True)
 
 				# gradient clip 
-				if self.use_grad_clip: 
-					torch.nn.utils.clip_grad_norm_(self.actor.parameters(), 2)
+				# if self.use_grad_clip: 
+				# 	torch.nn.utils.clip_grad_norm_(self.actor.parameters(), 2)
 				self.actor_optim.step()
 
 				for name, param in self.actor.named_parameters():
@@ -580,7 +580,7 @@ class PPO:
 				t += 1 # Increment timesteps ran this batch so far (include episode timestep)
 
 				# convert obs size to fit the neural network (seq_len, batch_size, input_size)
-				obs = obs.reshape(1, 12, self.obs_dim)   	# batch first = true
+				obs = obs.reshape(1, 15, self.obs_dim)   	# batch first = true
 				# obs = np.transpose(obs)
 			
 				# Normalization obs 
